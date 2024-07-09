@@ -15,7 +15,7 @@ export const LoginButton = ({ children }: LoginButtonProps) => {
   };
 
   return (
-    <Button onClick={onClick} variant="secondary" className="w-full max-w-md">
+    <Button onClick={onClick} className="w-full max-w-md">
       {children}
     </Button>
   );

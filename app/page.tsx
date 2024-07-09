@@ -2,7 +2,7 @@ import { LoginButton } from "@/components/auth/login-button";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center bg-sky-950">
+    <main className="flex min-h-screen flex-col items-center justify-center">
       <div className="space-y-6">
         <h1 className="text-6xl font-semibold text-white drop shadow-md">
           🔐 Auth
