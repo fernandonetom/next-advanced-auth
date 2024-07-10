@@ -1,6 +1,5 @@
 "use client";
 
-import * as z from "zod";
 import { useForm } from "react-hook-form";
 import { LoginSchema, TLoginProps } from "@/lib/schemas/loginSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -15,8 +14,11 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { FormError } from "@/components/auth/form-error";
+import { useState } from "react";
 
 export const LoginForm = () => {
+  const [error] = useState<string | null>(null);
+
   const form = useForm<TLoginProps>({
     resolver: zodResolver(LoginSchema),
     defaultValues: {
@@ -69,7 +71,7 @@ export const LoginForm = () => {
           <Button className="w-full" type="submit">
             Login
           </Button>
-          <FormError message="Invalid credentials!" />
+          {error && <FormError message={error} />}
         </div>
       </form>
     </Form>
