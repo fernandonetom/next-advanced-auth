@@ -1,4 +1,4 @@
-import { LoginForm } from "@/components/auth/login-form";
+import { RegisterForm } from "@/components/auth/register-form";
 import { SocialButtons } from "@/components/auth/social-buttons";
 import {
   Card,
@@ -10,24 +10,18 @@ import {
 } from "@/components/ui/card";
 import Link from "next/link";
 
-export const LoginCard = () => {
+export const RegisterCard = () => {
   return (
     <Card className="text-center min-w-96">
       <CardHeader>
         <CardTitle className="text-2xl">🔐 Auth</CardTitle>
-        <CardDescription>Welcome back!</CardDescription>
+        <CardDescription>Create your account now!</CardDescription>
       </CardHeader>
       <CardContent>
-        <LoginForm />
+        <RegisterForm />
       </CardContent>
       <CardFooter className="flex flex-col space-y-4">
         <SocialButtons />
-        <Link
-          href="/auth/register"
-          className="text-sm text-slate-200 hover:text-white"
-        >
-          Create an account
-        </Link>
       </CardFooter>
     </Card>
   );
