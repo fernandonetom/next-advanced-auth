@@ -20,6 +20,7 @@ import { register } from "@/services/userService";
 export const RegisterForm = () => {
   const [isPending, startTransition] = useTransition();
   const [error, setError] = useState<string | null>(null);
+  const [success, setSuccess] = useState<string | null>(null);
 
   const form = useForm<TRegisterProps>({
     resolver: zodResolver(RegisterSchema),
@@ -37,7 +38,8 @@ export const RegisterForm = () => {
       const result = await register(credentials);
 
       if (result.success) {
-        console.log("User registered successfully!");
+        form.reset();
+        setSuccess("User registered successfully!");
       }
 
       if (!result.success) {
@@ -114,6 +116,7 @@ export const RegisterForm = () => {
             {isPending ? "Loading..." : "Register"}
           </Button>
           {error && <FormError message={error} />}
+          {success && <h1 className="text-green-400">{success}</h1>}
         </div>
       </form>
     </Form>
