@@ -15,9 +15,12 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { FormError } from "@/components/auth/form-error";
 import { useState } from "react";
+import { useSearchParams } from "next/navigation";
+import { login } from "@/actions/login";
 
 export const LoginForm = () => {
-  const [error] = useState<string | null>(null);
+  const searchParams = useSearchParams();
+  const [error, setError] = useState<string | null>(null);
 
   const form = useForm<TLoginProps>({
     resolver: zodResolver(LoginSchema),
@@ -27,8 +30,13 @@ export const LoginForm = () => {
     },
   });
 
-  const onSubmit = (credentials: TLoginProps) => {
-    console.log(credentials); // handle login logic here
+  const onSubmit = async (credentials: TLoginProps) => {
+    const result = await login(
+      credentials,
+      searchParams.get("redirect") || undefined
+    );
+
+    if (!result?.success) return setError(result?.error);
   };
 
   return (
